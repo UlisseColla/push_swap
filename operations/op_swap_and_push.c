@@ -1,0 +1,81 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   op_swap_and_push.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ucolla <ucolla@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/09 16:04:17 by ucolla            #+#    #+#             */
+/*   Updated: 2024/02/06 18:14:58 by ucolla           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../push_swap.h"
+
+void	sa(t_stack **stack, int i)
+{
+	t_stack	*node;
+
+	if (ft_list_size(stack) < 2)
+		return ;
+	node = (*stack)->next;
+	(*stack)->next = (*stack)->next->next;
+	node->next = *stack;
+	*stack = node;
+	if (i == 1)
+		write(1, "sa\n", 3);
+}
+
+void	sb(t_stack **stack, int i)
+{
+	t_stack	*node;
+
+	if (ft_list_size(stack) < 2)
+		return ;
+	node = (*stack)->next;
+	(*stack)->next = (*stack)->next->next;
+	node->next = *stack;
+	*stack = node;
+	if (i == 1)
+		write(1, "sb\n", 3);
+}
+
+void	ss(t_stack **stack_a, t_stack **stack_b, int i)
+{
+	if (ft_list_size(stack_a) < 2 || ft_list_size(stack_b) < 2)
+		return ;
+	sa(stack_a, 0);
+	sb(stack_b, 0);
+	if (i == 1)
+		write(1, "ss\n", 3);
+}
+
+void	pa(t_stack **stack, t_stack **node, int i, t_ls *ls)
+{
+	t_stack	*tmp_node;
+
+	if (!(*node))
+		return ;
+	tmp_node = (*node)->next;
+	ft_list_addfront(stack, *node);
+	*node = tmp_node;
+	ls->list_a++;
+	ls->list_b--;
+	if (i == 1)
+		write(1, "pa\n", 3);
+}
+
+void	pb(t_stack **stack, t_stack **node, int i, t_ls *ls)
+{
+	t_stack	*tmp_node;
+
+	if (!(*node))
+		return ;
+	tmp_node = (*node)->next;
+	ft_list_addfront(stack, *node);
+	*node = tmp_node;
+	ls->list_a--;
+	ls->list_b++;
+	if (i == 1)
+		write(1, "pb\n", 3);
+}
