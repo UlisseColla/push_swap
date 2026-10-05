@@ -12,9 +12,9 @@
 
 #include "../push_swap.h"
 
-int	ft_list_size(t_stack **list)
+int	ft_list_size(t_node **list)
 {
-	t_stack	*tmp;
+	t_node	*tmp;
 	int		i;
 
 	if (*list == NULL)

@@ -14,7 +14,7 @@
 
 /* Aggiungo un elemento all'inizio della lista, passando un pointer ad essa */
 
-void	ft_list_addfront(t_stack **list, t_stack *new)
+void	ft_list_addfront(t_node **list, t_node *new)
 {
 	if (!list || !new)
 		return ;

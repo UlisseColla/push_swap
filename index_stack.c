@@ -12,11 +12,11 @@
 
 #include "push_swap.h"
 
-int	index_find_smallest(t_stack **stack)
+int	index_find_smallest(t_node **stack)
 {
 	int		min_value;
 	int		current_value;
-	t_stack	*tmp;
+	t_node	*tmp;
 
 	min_value = INT_MAX;
 	tmp = *stack;
@@ -30,12 +30,12 @@ int	index_find_smallest(t_stack **stack)
 	return (min_value);
 }
 
-void	index_stack_init(t_stack **stack, int i, int c)
+void	index_stack_init(t_node **stack, int i, int c)
 {
 	int		tmp;
 	int		list_size;
 	int		smallest;
-	t_stack	*b;
+	t_node	*b;
 
 	tmp = 1;
 	list_size = ft_list_size(stack);

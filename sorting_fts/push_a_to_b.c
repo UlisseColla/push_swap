@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-int	find_push(t_stack *stack, int chunk_1, int chunk_2)
+int	find_push(t_node *stack, int chunk_1, int chunk_2)
 {
 	int	i;
 
@@ -27,7 +27,7 @@ int	find_push(t_stack *stack, int chunk_1, int chunk_2)
 	return (-1);
 }
 
-void	push_a_to_b(t_stack **stack_a, t_stack **stack_b, int flag, t_ls *ls)
+void	push_a_to_b(t_node **stack_a, t_node **stack_b, int flag, t_ls *ls)
 {
 	int	i;
 	int	c_1;

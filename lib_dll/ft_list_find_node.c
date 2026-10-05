@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-t_stack	*ft_list_find_node(t_stack *list, int value)
+t_node	*ft_list_find_node(t_node *list, int value)
 {
 	while (list)
 	{
@@ -25,7 +25,7 @@ t_stack	*ft_list_find_node(t_stack *list, int value)
 	return (NULL);
 }
 
-t_stack	*ft_list_find_index(t_stack *list, int index)
+t_node	*ft_list_find_index(t_node *list, int index)
 {
 	while (list)
 	{

@@ -21,16 +21,16 @@
 # include <limits.h>
 # include <stdbool.h>
 
-typedef struct t_double_node
+typedef struct s_node
 {
-	int						value;
-	int						index;
-	int						push;
-	int						chunk;
-	bool					has_index;
-	struct t_double_node	*next;
-	struct t_double_node	*prev;
-}	t_stack;
+	struct s_node	*next;
+	struct s_node	*prev;
+	int				value;
+	int				index;
+	int				push;
+	int				chunk;
+	bool			has_index;
+}	t_node;
 
 typedef struct s_operator
 {
@@ -45,71 +45,71 @@ typedef struct s_operator
 	int	rrr;
 }	t_operator;
 
-typedef struct s_list_size
+typedef struct s_stack
 {
-	int	list_a;
-	int	list_b;
-}	t_ls;
+	struct s_stack	*stack;
+	int				size;
+}	t_stack;
 
 # define CHUNK_1_4 0
 # define CHUNK_2_3 1
 
-t_stack	*ft_create_node(int value);
-t_stack	*ft_create_list(char *str_args, t_ls *ls);
-t_stack	*ft_list_last(t_stack *list);
-t_stack	*ft_list_find_node(t_stack *list, int value);
-void	ft_free_list(t_stack *list);
-void	ft_list_addfront(t_stack **list, t_stack *new);
-void	ft_list_addback(t_stack **list, t_stack *new);
-int		ft_list_size(t_stack **list);
+t_node	*ft_create_node(int value);
+t_node	*ft_create_list(char *str_args, int *size);		// to be checked
+t_node	*ft_list_last(t_node *list);
+t_node	*ft_list_find_node(t_node *list, int value);
+void	ft_free_list(t_node *list);
+void	ft_list_addfront(t_node **list, t_node *new);
+void	ft_list_addback(t_node **list, t_node *new);
+int		ft_list_size(t_node **list);
 
 /* Push */
-void	pa(t_stack **stack, t_stack **node, int i, t_ls *ls);
-void	pb(t_stack **stack, t_stack **node, int i, t_ls *ls);
+void	pa(t_node **stack, t_node **node, int i, t_ls *ls);		// to be checked
+void	pb(t_node **stack, t_node **node, int i, t_ls *ls);		// to be checked
 /* Swap */
-void	sa(t_stack **stack, int i);
-void	sb(t_stack **stack, int i);
-void	ss(t_stack **stack_a, t_stack **stack_b, int i);
+void	sa(t_node **stack, int i);
+void	sb(t_node **stack, int i);
+void	ss(t_node **stack_a, t_node **stack_b, int i);
 /* Rotate */
-void	ra(t_stack **stack, int i);
-void	rb(t_stack **stack, int i);
-void	rr(t_stack **stack_a, t_stack **stack_b, int i);
+void	ra(t_node **stack, int i);
+void	rb(t_node **stack, int i);
+void	rr(t_node **stack_a, t_node **stack_b, int i);
 /* Reverse rotate */
-void	rra(t_stack **stack, int i);
-void	rrb(t_stack **stack, int i);
-void	rrr(t_stack **stack_a, t_stack **stack_b, int i);
+void	rra(t_node **stack, int i);
+void	rrb(t_node **stack, int i);
+void	rrr(t_node **stack_a, t_node **stack_b, int i);
 
 /* Utils */
-void	index_stack_init(t_stack **stack, int i, int c);
-void	index_push_init(t_stack *stack, int *lis);
-void	show_stack(t_stack **stack);
+void	index_stack_init(t_node **stack, int i, int c);
+void	index_push_init(t_node *stack, int *lis);
+void	show_stack(t_node **stack);
 void	free_mat(char **mat);
 void	counter_rr_rrr(t_operator **operator);
-int		moves_counter(int moves, t_stack *stack_a, int index);
-int		find_smallest(t_stack *stack);
-int		find_biggest(t_stack *stack);
-int		check_order(t_stack **stack);
+int		moves_counter(int moves, t_node *stack_a, int index);
+int		find_smallest(t_node *stack);
+int		find_biggest(t_node *stack);
+int		check_order(t_node **stack);
 int		check_input(char *str);
 
 /* initialize_stack */
-int		initialize_stack(t_stack **stack, char **argv, int argc, t_ls *ls);
+int		initialize_stack(t_node **stack, char **argv, int argc);
 int		check_white_space(char *str);
 
 /* --- Sorting --- */
-void	ft_two_numbers(t_stack **stack_a);
-void	ft_three_numbers(t_stack **stack_a);
-void	ft_four_numbers(t_stack **stack_a, t_stack **stack_b);
-void	ft_five_numbers(t_stack **stack_a, t_stack **stack_b);
-void	push_smallest(t_stack **stack_a, t_stack **stack_b);
-void	sorting(t_stack **stack_a, t_stack **stack_b, t_ls *ls);
-void	push_a_to_b(t_stack **stack_a, t_stack **stack_b, int flag, t_ls *ls);
-void	push_b_to_a(t_stack **stack_a, t_stack **stack_b);
-void	check_efficiency(t_stack *b, t_stack *a, t_operator *operator);
-void	eff_counter(t_stack *a, t_stack *b, int index, t_operator **value);
-int		eff_counter_no_save(t_stack *stack_a, t_stack *stack_b, int index);
-int		find_eff(t_stack *stack, int index);
-int		find_value(t_stack *stack, int value);
-int		find_smallest_after_index(t_stack *stack, int index);
-int		find_biggest_before_index(t_stack *stack, int index);
+void	ft_two_numbers(t_node **stack_a);
+void	ft_three_numbers(t_node **stack_a);
+void	ft_four_numbers(t_node **stack_a, t_node **stack_b);
+void	ft_five_numbers(t_node **stack_a, t_node **stack_b);
+void	push_smallest(t_node **stack_a, t_node **stack_b);
+void	sorting(t_node **stack_a, t_node **stack_b, t_ls *ls);		// to be checked
+void	push_a_to_b(t_node **stack_a, t_node **stack_b, int flag, t_ls *ls);		// to be checked
+void	push_b_to_a(t_node **stack_a, t_node **stack_b);
+void	check_efficiency(t_node *b, t_node *a, t_operator *operator);
+void	eff_counter(t_node *a, t_node *b, int index, t_operator **value);
+int		eff_counter_no_save(t_node *stack_a, t_node *stack_b, int index);
+int		find_eff(t_node *stack, int index);
+int		find_value(t_node *stack, int value);
+int		find_smallest_after_index(t_node *stack, int index);
+int		find_biggest_before_index(t_node *stack, int index);
 
 #endif

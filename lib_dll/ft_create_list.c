@@ -12,10 +12,10 @@
 
 #include "../push_swap.h"
 
-t_stack	*ft_create_list(char *str_args, t_ls *ls)
+t_node	*ft_create_list(char *str_args, int *size)
 {
-	t_stack	*list;
-	t_stack	*new;
+	t_node	*list;
+	t_node	*new;
 	int		i;
 	char	**args;
 
@@ -35,7 +35,7 @@ t_stack	*ft_create_list(char *str_args, t_ls *ls)
 		ft_list_addback(&list, new);
 		i++;
 	}
-	ls->list_a = i;
+	*size = i;
 	free_mat(args);
 	return (list);
 }

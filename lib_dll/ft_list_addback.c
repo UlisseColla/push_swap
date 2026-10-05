@@ -14,9 +14,9 @@
 
 /* Aggiungo un elemento in fondo alla lista, passando un pointer ad essa */
 
-void	ft_list_addback(t_stack **list, t_stack *new)
+void	ft_list_addback(t_node **list, t_node *new)
 {
-	t_stack	*tmp;
+	t_node	*tmp;
 
 	if (!list || !new)
 		return ;

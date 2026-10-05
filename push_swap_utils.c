@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	find_value(t_stack *stack, int value)
+int	find_value(t_node *stack, int value)
 {
 	while (stack)
 	{
@@ -23,9 +23,9 @@ int	find_value(t_stack *stack, int value)
 	return (0);
 }
 
-int	check_order(t_stack **stack)
+int	check_order(t_node **stack)
 {
-	t_stack	*tmp;
+	t_node	*tmp;
 
 	tmp = *stack;
 	if (tmp->next == NULL)
@@ -42,9 +42,9 @@ int	check_order(t_stack **stack)
 	return (1);
 }
 
-void	show_stack(t_stack **stack)
+void	show_stack(t_node **stack)
 {
-	t_stack	*tmp;
+	t_node	*tmp;
 
 	if (!(*stack))
 		printf("Empty stack\n\n");

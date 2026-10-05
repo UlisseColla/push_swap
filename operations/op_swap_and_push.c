@@ -12,9 +12,9 @@
 
 #include "../push_swap.h"
 
-void	sa(t_stack **stack, int i)
+void	sa(t_node **stack, int i)
 {
-	t_stack	*node;
+	t_node	*node;
 
 	if (ft_list_size(stack) < 2)
 		return ;
@@ -26,9 +26,9 @@ void	sa(t_stack **stack, int i)
 		write(1, "sa\n", 3);
 }
 
-void	sb(t_stack **stack, int i)
+void	sb(t_node **stack, int i)
 {
-	t_stack	*node;
+	t_node	*node;
 
 	if (ft_list_size(stack) < 2)
 		return ;
@@ -40,7 +40,7 @@ void	sb(t_stack **stack, int i)
 		write(1, "sb\n", 3);
 }
 
-void	ss(t_stack **stack_a, t_stack **stack_b, int i)
+void	ss(t_node **stack_a, t_node **stack_b, int i)
 {
 	if (ft_list_size(stack_a) < 2 || ft_list_size(stack_b) < 2)
 		return ;
@@ -50,9 +50,9 @@ void	ss(t_stack **stack_a, t_stack **stack_b, int i)
 		write(1, "ss\n", 3);
 }
 
-void	pa(t_stack **stack, t_stack **node, int i, t_ls *ls)
+void	pa(t_node **stack, t_node **node, int i, t_ls *ls)
 {
-	t_stack	*tmp_node;
+	t_node	*tmp_node;
 
 	if (!(*node))
 		return ;
@@ -65,9 +65,9 @@ void	pa(t_stack **stack, t_stack **node, int i, t_ls *ls)
 		write(1, "pa\n", 3);
 }
 
-void	pb(t_stack **stack, t_stack **node, int i, t_ls *ls)
+void	pb(t_node **stack, t_node **node, int i, t_ls *ls)
 {
-	t_stack	*tmp_node;
+	t_node	*tmp_node;
 
 	if (!(*node))
 		return ;

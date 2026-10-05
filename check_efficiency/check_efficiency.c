@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-void	ra_rra_counter_a(t_stack *stack_a, int index, t_operator **operator)
+void	ra_rra_counter_a(t_node *stack_a, int index, t_operator **operator)
 {
 	int	moves;
 	int	stack_size;
@@ -33,7 +33,7 @@ void	ra_rra_counter_a(t_stack *stack_a, int index, t_operator **operator)
 	(*operator)->ra = moves;
 }
 
-void	rb_rrb_counter_b(t_stack *stack_b, int index, t_operator **operator)
+void	rb_rrb_counter_b(t_node *stack_b, int index, t_operator **operator)
 {
 	int	moves;
 	int	stack_size;
@@ -55,7 +55,7 @@ void	rb_rrb_counter_b(t_stack *stack_b, int index, t_operator **operator)
 	(*operator)->rb = moves;
 }
 
-void	eff_counter(t_stack *a, t_stack *b, int index, t_operator **operator)
+void	eff_counter(t_node *a, t_node *b, int index, t_operator **operator)
 {
 	int	r_moves;
 	int	rr_moves;
@@ -81,10 +81,10 @@ void	eff_counter(t_stack *a, t_stack *b, int index, t_operator **operator)
 	}
 }
 
-void	check_efficiency(t_stack *b, t_stack *a, t_operator *operator)
+void	check_efficiency(t_node *b, t_node *a, t_operator *operator)
 {
-	t_stack	*temp_a;
-	t_stack	*temp_b;
+	t_node	*temp_a;
+	t_node	*temp_b;
 	int		min_moves;
 	int		current_moves;
 	int		index_min_value;

@@ -12,10 +12,10 @@
 
 #include "../push_swap.h"
 
-void	rra(t_stack **stack, int i)
+void	rra(t_node **stack, int i)
 {
-	t_stack	*value;
-	t_stack	*seclast_node;
+	t_node	*value;
+	t_node	*seclast_node;
 
 	if (ft_list_size(stack) < 2)
 		return ;
@@ -32,10 +32,10 @@ void	rra(t_stack **stack, int i)
 		write(1, "rra\n", 4);
 }
 
-void	rrb(t_stack **stack, int i)
+void	rrb(t_node **stack, int i)
 {
-	t_stack	*value;
-	t_stack	*seclast_node;
+	t_node	*value;
+	t_node	*seclast_node;
 
 	if (ft_list_size(stack) < 2)
 		return ;
@@ -52,7 +52,7 @@ void	rrb(t_stack **stack, int i)
 		write(1, "rrb\n", 4);
 }
 
-void	rrr(t_stack **stack_a, t_stack **stack_b, int i)
+void	rrr(t_node **stack_a, t_node **stack_b, int i)
 {
 	if (ft_list_size(stack_a) < 2 || ft_list_size(stack_b) < 2)
 		return ;

@@ -50,7 +50,7 @@ int	check_white_space(char *str)
 	return (0);
 }
 
-static int	many_parameters(char **av, t_stack **stack, t_ls *ls)
+static int	many_parameters(char **av, t_node **stack, int *size)
 {
 	char	*str;
 	char	*str2;
@@ -75,12 +75,15 @@ static int	many_parameters(char **av, t_stack **stack, t_ls *ls)
 	}
 	if (check_input(str2) != 0)
 		return (free(str2), 1);
-	*stack = ft_create_list(str2, ls);
+	*stack = ft_create_list(str2, size);
 	return (free(str2), 0);
 }
 
-static int	check_argv(char **argv, int argc, t_stack **stack, t_ls *ls)
+static int	check_argv(char **argv, int argc, t_stack *stack)
 {
+	t_node 	*s;
+
+	s = stack->stack;
 	if (argc < 2)
 		return (2);
 	else if (argc == 2)
@@ -89,20 +92,22 @@ static int	check_argv(char **argv, int argc, t_stack **stack, t_ls *ls)
 			return (1);
 		if (check_input(argv[1]) == 1)
 			return (1);
-		*stack = ft_create_list(argv[1], ls);
+		s = ft_create_list(argv[1], &(stack->size));
 		return (0);
 	}
 	else if (ft_strlen(argv[1]) < 1)
 		return (1);
 	else
-		return (many_parameters(argv, stack, ls));
+		return (many_parameters(argv, &s, &(stack->size)));
 }
 
-int	initialize_stack(t_stack **stack, char **argv, int argc, t_ls *ls)
+int	initialize_stack(t_stack *stack, char **argv, int argc)
 {
-	int	i;
+	int		i;
+	t_node 	*s;
 
-	i = check_argv(argv, argc, stack, ls);
+	s = stack->stack;
+	i = check_argv(argv, argc, &s);
 	if (i == 1)
 	{
 		ft_putstr_fd("Error\n", 2);
@@ -110,6 +115,6 @@ int	initialize_stack(t_stack **stack, char **argv, int argc, t_ls *ls)
 	}
 	else if (i == 2)
 		return (2);
-	index_stack_init(stack, 1, 1);
+	index_stack_init(&s, 1, 1);
 	return (0);
 }

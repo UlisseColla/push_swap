@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-void	ft_three_numbers(t_stack **stack_a)
+void	ft_three_numbers(t_node **stack_a)
 {
 	if ((*stack_a)->index > (*stack_a)->next->index && (*stack_a)->index
 		< ft_list_last(*stack_a)->index)

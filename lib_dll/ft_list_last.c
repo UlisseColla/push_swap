@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-t_stack	*ft_list_last(t_stack *list)
+t_node	*ft_list_last(t_node *list)
 {
 	if (!list)
 		return (NULL);

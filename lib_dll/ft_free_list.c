@@ -12,9 +12,9 @@
 
 #include "../push_swap.h"
 
-void	ft_free_list(t_stack *list)
+void	ft_free_list(t_node *list)
 {
-	t_stack	*tmp;
+	t_node	*tmp;
 
 	if (list == NULL)
 		return ;

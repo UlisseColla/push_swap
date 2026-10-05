@@ -12,11 +12,11 @@
 
 #include "../push_swap.h"
 
-t_stack	*ft_create_node(int value)
+t_node	*ft_create_node(int value)
 {
-	t_stack	*new;
+	t_node	*new;
 
-	new = (t_stack *)malloc(sizeof(t_stack));
+	new = (t_node *)malloc(sizeof(t_node));
 	if (new == NULL)
 		return (NULL);
 	new->value = value;

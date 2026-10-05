@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-int	moves_counter_no_save(int moves, t_stack *stack_a, int index)
+int	moves_counter_no_save(int moves, t_node *stack_a, int index)
 {
 	if (index > find_biggest(stack_a))
 	{
@@ -40,7 +40,7 @@ int	moves_counter_no_save(int moves, t_stack *stack_a, int index)
 	return (moves);
 }
 
-void	counter_a(t_stack *stack_a, int index, t_operator *operator)
+void	counter_a(t_node *stack_a, int index, t_operator *operator)
 {
 	int	moves;
 	int	stack_size;
@@ -60,7 +60,7 @@ void	counter_a(t_stack *stack_a, int index, t_operator *operator)
 	operator->ra = moves;
 }
 
-void	counter_b(t_stack *stack_b, int index, t_operator *operator)
+void	counter_b(t_node *stack_b, int index, t_operator *operator)
 {
 	int	moves;
 	int	stack_size;
@@ -110,7 +110,7 @@ void	check_operator_rr_rrr(t_operator *operator)
 	}
 }
 
-int	eff_counter_no_save(t_stack *stack_a, t_stack *stack_b, int index)
+int	eff_counter_no_save(t_node *stack_a, t_node *stack_b, int index)
 {
 	int			r_moves;
 	int			rr_moves;

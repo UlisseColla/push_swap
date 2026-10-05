@@ -40,7 +40,7 @@ void	counter_rr_rrr(t_operator **operator)
 	}
 }
 
-int	moves_counter(int moves, t_stack *stack_a, int index)
+int	moves_counter(int moves, t_node *stack_a, int index)
 {
 	if (index > find_biggest(stack_a))
 	{

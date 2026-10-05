@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-void	r_operations_b(t_stack **b, t_stack **a, t_operator operator)
+void	r_operations_b(t_node **b, t_node **a, t_operator operator)
 {
 	while (operator.rr > 0)
 	{
@@ -31,7 +31,7 @@ void	r_operations_b(t_stack **b, t_stack **a, t_operator operator)
 	}
 }
 
-void	rr_operations_b(t_stack **b, t_stack **a, t_operator operator)
+void	rr_operations_b(t_node **b, t_node **a, t_operator operator)
 {
 	while (operator.rrr > 0)
 	{
@@ -50,7 +50,7 @@ void	rr_operations_b(t_stack **b, t_stack **a, t_operator operator)
 	}
 }
 
-void	push_b_to_a(t_stack **stack_b, t_stack **stack_a)
+void	push_b_to_a(t_node **stack_b, t_node **stack_a)
 {
 	t_operator	operator;
 

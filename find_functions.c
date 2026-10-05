@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	find_smallest(t_stack *stack)
+int	find_smallest(t_node *stack)
 {
 	int	min_value;
 	int	current_value;
@@ -28,7 +28,7 @@ int	find_smallest(t_stack *stack)
 	return (min_value);
 }
 
-int	find_biggest(t_stack *stack)
+int	find_biggest(t_node *stack)
 {
 	int	max_value;
 	int	current_value;
@@ -44,7 +44,7 @@ int	find_biggest(t_stack *stack)
 	return (max_value);
 }
 
-int	find_smallest_after_index(t_stack *stack, int index)
+int	find_smallest_after_index(t_node *stack, int index)
 {
 	int	current_value;
 	int	min_value;
@@ -60,7 +60,7 @@ int	find_smallest_after_index(t_stack *stack, int index)
 	return (min_value);
 }
 
-int	find_biggest_before_index(t_stack *stack, int index)
+int	find_biggest_before_index(t_node *stack, int index)
 {
 	int	current_value;
 	int	max_value;

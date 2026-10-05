@@ -12,17 +12,17 @@
 
 #include "../push_swap.h"
 
-void	ft_two_numbers(t_stack **stack_a)
+void	ft_two_numbers(t_node **stack_a)
 {
 	if ((*stack_a)->index > (*stack_a)->next->index)
 		sa(stack_a, 1);
 }
 
-int	ft_find_smallest(t_stack *stack)
+int	ft_find_smallest(t_node *stack)
 {
 	int		min_value;
 	int		current_value;
-	t_stack	*tmp;
+	t_node	*tmp;
 
 	min_value = INT_MAX;
 	tmp = stack;
@@ -36,11 +36,11 @@ int	ft_find_smallest(t_stack *stack)
 	return (min_value);
 }
 
-void	push_smallest(t_stack **stack_a, t_stack **stack_b)
+void	push_smallest(t_node **stack_a, t_node **stack_b)
 {
 	int		i;
-	t_stack	*a;
-	t_stack	*b;
+	t_node	*a;
+	t_node	*b;
 
 	i = 0;
 	a = *stack_a;
@@ -65,7 +65,7 @@ void	push_smallest(t_stack **stack_a, t_stack **stack_b)
 	pb(stack_b, stack_a, 1);
 }
 
-void	ft_four_numbers(t_stack **stack_a, t_stack **stack_b)
+void	ft_four_numbers(t_node **stack_a, t_node **stack_b)
 {
 	push_smallest(stack_a, stack_b);
 	ft_three_numbers(stack_a);

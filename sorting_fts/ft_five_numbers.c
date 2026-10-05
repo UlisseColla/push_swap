@@ -12,11 +12,11 @@
 
 #include "../push_swap.h"
 
-int	find_biggest_index(t_stack *stack)
+int	find_biggest_index(t_node *stack)
 {
 	int		max_value;
 	int		current_value;
-	t_stack	*tmp;
+	t_node	*tmp;
 
 	max_value = INT_MIN;
 	tmp = stack;
@@ -30,10 +30,10 @@ int	find_biggest_index(t_stack *stack)
 	return (max_value);
 }
 
-void	push_biggest(t_stack **stack_a, t_stack **stack_b, int value)
+void	push_biggest(t_node **stack_a, t_node **stack_b, int value)
 {
 	int		i;
-	t_stack	*a;
+	t_node	*a;
 
 	i = 0;
 	a = *stack_a;
@@ -53,7 +53,7 @@ void	push_biggest(t_stack **stack_a, t_stack **stack_b, int value)
 	pb(stack_b, stack_a, 1);
 }
 
-void	ft_five_numbers(t_stack **stack_a, t_stack **stack_b)
+void	ft_five_numbers(t_node **stack_a, t_node **stack_b)
 {
 	push_biggest(stack_a, stack_b, find_biggest_index(*stack_a) - 1);
 	push_biggest(stack_a, stack_b, find_biggest_index(*stack_a));

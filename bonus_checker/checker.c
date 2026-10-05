@@ -12,7 +12,7 @@
 
 #include "push_swap_bonus.h"
 
-void	ft_error(t_stack **stack_a, t_stack **stack_b, int i, char *line)
+void	ft_error(t_node **stack_a, t_node **stack_b, int i, char *line)
 {
 	if (line)
 		free(line);
@@ -31,7 +31,7 @@ char	*free_and_return(char *line_to_free, char *line_to_return)
 	return (line_to_return);
 }
 
-char	*ft_check_operations(t_stack **stack_a, t_stack **stack_b, char *line)
+char	*ft_check_operations(t_node **stack_a, t_node **stack_b, char *line)
 {
 	if (ft_strncmp(line, "pa", 2) == 0)
 		pa(stack_a, stack_b, 0);
@@ -60,7 +60,7 @@ char	*ft_check_operations(t_stack **stack_a, t_stack **stack_b, char *line)
 	return (free_and_return(line, get_next_line(0)));
 }
 
-void	ft_check(t_stack **stack_a, t_stack **stack_b, char *line)
+void	ft_check(t_node **stack_a, t_node **stack_b, char *line)
 {
 	while (line && *line != '\n')
 		line = ft_check_operations(stack_a, stack_b, line);
@@ -78,8 +78,8 @@ void	ft_check(t_stack **stack_a, t_stack **stack_b, char *line)
 
 int	main(int argc, char *argv[])
 {
-	t_stack	*a;
-	t_stack	*b;
+	t_node	*a;
+	t_node	*b;
 	char	*line;
 
 	a = NULL;
