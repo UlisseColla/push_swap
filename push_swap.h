@@ -47,8 +47,8 @@ typedef struct s_operator
 
 typedef struct s_stack
 {
-	struct s_stack	*stack;
-	int				size;
+	t_node	*stack;
+	int		size;
 }	t_stack;
 
 # define CHUNK_1_4 0
@@ -65,7 +65,7 @@ int		ft_list_size(t_node **list);
 
 /* Push */
 void	pa(t_node **stack, t_node **node, int i, t_ls *ls);		// to be checked
-void	pb(t_node **stack, t_node **node, int i, t_ls *ls);		// to be checked
+void	pb(t_stack *stack, t_stack *node, int i);		// to be checked
 /* Swap */
 void	sa(t_node **stack, int i);
 void	sb(t_node **stack, int i);

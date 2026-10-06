@@ -65,17 +65,19 @@ void	pa(t_node **stack, t_node **node, int i, t_ls *ls)
 		write(1, "pa\n", 3);
 }
 
-void	pb(t_node **stack, t_node **node, int i, t_ls *ls)
+void	pb(t_stack *stack_a, t_stack *stack_b, int i)
 {
 	t_node	*tmp_node;
+	t_node	*a;
+	t_node	*b;
 
+	a = stack_a->stack;
+	b = stack_b->stack;
 	if (!(*node))
 		return ;
 	tmp_node = (*node)->next;
 	ft_list_addfront(stack, *node);
 	*node = tmp_node;
-	ls->list_a--;
-	ls->list_b++;
 	if (i == 1)
 		write(1, "pb\n", 3);
 }
