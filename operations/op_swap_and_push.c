@@ -12,11 +12,13 @@
 
 #include "../push_swap.h"
 
-void	sa(t_node **stack, int i)
+void	sa(t_stack *a, int i)
 {
 	t_node	*node;
+	t_node	**stack;
 
-	if (ft_list_size(stack) < 2)
+	stack = a->stack;
+	if (a->size < 2)
 		return ;
 	node = (*stack)->next;
 	(*stack)->next = (*stack)->next->next;
@@ -26,11 +28,13 @@ void	sa(t_node **stack, int i)
 		write(1, "sa\n", 3);
 }
 
-void	sb(t_node **stack, int i)
+void	sb(t_stack *b, int i)
 {
 	t_node	*node;
+	t_node	**stack;
 
-	if (ft_list_size(stack) < 2)
+	stack = b->stack;
+	if (b->size < 2)
 		return ;
 	node = (*stack)->next;
 	(*stack)->next = (*stack)->next->next;
@@ -40,9 +44,14 @@ void	sb(t_node **stack, int i)
 		write(1, "sb\n", 3);
 }
 
-void	ss(t_node **stack_a, t_node **stack_b, int i)
+void	ss(t_stack *a, t_stack *b, int i)
 {
-	if (ft_list_size(stack_a) < 2 || ft_list_size(stack_b) < 2)
+	t_node	**stack_a;
+	t_node	**stack_b;
+
+	stack_a = a->stack;
+	stack_b = b->stack;
+	if (a->size < 2 || b->size < 2)
 		return ;
 	sa(stack_a, 0);
 	sb(stack_b, 0);
@@ -50,34 +59,40 @@ void	ss(t_node **stack_a, t_node **stack_b, int i)
 		write(1, "ss\n", 3);
 }
 
-void	pa(t_node **stack, t_node **node, int i, t_ls *ls)
+void	pa(t_stack *stack_a, t_stack *stack_b, int i)
 {
 	t_node	*tmp_node;
+	t_node	**a;
+	t_node	**b;
 
-	if (!(*node))
+	a = stack_a->stack;
+	b = stack_b->stack;
+	if (!(*b))
 		return ;
-	tmp_node = (*node)->next;
-	ft_list_addfront(stack, *node);
-	*node = tmp_node;
-	ls->list_a++;
-	ls->list_b--;
+	tmp_node = (*b)->next;
+	ft_list_addfront(a, *b);
+	*b = tmp_node;
+	stack_a->size++;
+	stack_b->size--;
 	if (i == 1)
 		write(1, "pa\n", 3);
 }
 
-void	pb(t_stack *stack_a, t_stack *stack_b, int i)
+void	pb(t_stack *stack_b, t_stack *stack_a, int i)
 {
 	t_node	*tmp_node;
-	t_node	*a;
-	t_node	*b;
+	t_node	**a;
+	t_node	**b;
 
 	a = stack_a->stack;
 	b = stack_b->stack;
-	if (!(*node))
+	if (!(*a))
 		return ;
-	tmp_node = (*node)->next;
-	ft_list_addfront(stack, *node);
-	*node = tmp_node;
+	tmp_node = (*a)->next;
+	ft_list_addfront(b, *a);
+	*a = tmp_node;
+	stack_a->size--;
+	stack_b->size++;
 	if (i == 1)
 		write(1, "pb\n", 3);
 }

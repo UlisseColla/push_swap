@@ -45,10 +45,10 @@ void	push_a_to_b(t_stack *stack_a, t_stack *stack_b, int c_1, int c_2)
 		i--;
 	}
 	if (a->chunk == c_2)
-		pb(stack_b, stack_a, 1, ls);
+		pb(stack_b, stack_a, 1);
 	else if (a->chunk == c_1)
 	{
-		pb(stack_b, stack_a, 1, ls);
+		pb(stack_b, stack_a, 1);
 		if (stack_b->size > 1)
 			rb(stack_b, 1);
 	}

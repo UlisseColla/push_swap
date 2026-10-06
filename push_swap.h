@@ -47,7 +47,7 @@ typedef struct s_operator
 
 typedef struct s_stack
 {
-	t_node	*stack;
+	t_node	**stack;
 	int		size;
 }	t_stack;
 
@@ -55,7 +55,7 @@ typedef struct s_stack
 # define CHUNK_2_3 1
 
 t_node	*ft_create_node(int value);
-t_node	*ft_create_list(char *str_args, int *size);		// to be checked
+t_node	*ft_create_list(char *str_args, int *size);
 t_node	*ft_list_last(t_node *list);
 t_node	*ft_list_find_node(t_node *list, int value);
 void	ft_free_list(t_node *list);
@@ -64,12 +64,12 @@ void	ft_list_addback(t_node **list, t_node *new);
 int		ft_list_size(t_node **list);
 
 /* Push */
-void	pa(t_node **stack, t_node **node, int i, t_ls *ls);		// to be checked
-void	pb(t_stack *stack, t_stack *node, int i);		// to be checked
+void	pa(t_stack *stack_a, t_stack *stack_b, int i);
+void	pb(t_stack *stack_b, t_stack *stack_a, int i);
 /* Swap */
-void	sa(t_node **stack, int i);
-void	sb(t_node **stack, int i);
-void	ss(t_node **stack_a, t_node **stack_b, int i);
+void	sa(t_stack *a, int i);
+void	sb(t_stack *b, int i);
+void	ss(t_stack *a, t_stack *b, int i);
 /* Rotate */
 void	ra(t_node **stack, int i);
 void	rb(t_node **stack, int i);
@@ -92,7 +92,7 @@ int		check_order(t_node **stack);
 int		check_input(char *str);
 
 /* initialize_stack */
-int		initialize_stack(t_node **stack, char **argv, int argc);
+int		initialize_stack(t_stack *stack, char **argv, int argc);
 int		check_white_space(char *str);
 
 /* --- Sorting --- */
@@ -101,10 +101,10 @@ void	ft_three_numbers(t_node **stack_a);
 void	ft_four_numbers(t_node **stack_a, t_node **stack_b);
 void	ft_five_numbers(t_node **stack_a, t_node **stack_b);
 void	push_smallest(t_node **stack_a, t_node **stack_b);
-void	sorting(t_node **stack_a, t_node **stack_b, t_ls *ls);		// to be checked
-void	push_a_to_b(t_node **stack_a, t_node **stack_b, int flag, t_ls *ls);		// to be checked
+void	sorting(t_stack *stack_a, t_stack *stack_b);
+void	push_a_to_b(t_stack *stack_a, t_stack *stack_b, int c_1, int c_2);
 void	push_b_to_a(t_node **stack_a, t_node **stack_b);
-void	check_efficiency(t_node *b, t_node *a, t_operator *operator);
+void	check_efficiency(t_node *b, t_node *a, t_operator *operator); /* Check double useless double pointers for t_operator */
 void	eff_counter(t_node *a, t_node *b, int index, t_operator **value);
 int		eff_counter_no_save(t_node *stack_a, t_node *stack_b, int index);
 int		find_eff(t_node *stack, int index);

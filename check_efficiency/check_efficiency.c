@@ -81,6 +81,7 @@ void	eff_counter(t_node *a, t_node *b, int index, t_operator **operator)
 	}
 }
 
+/* Check double useless double pointers for t_operator */
 void	check_efficiency(t_node *b, t_node *a, t_operator *operator)
 {
 	t_node	*temp_a;

@@ -28,7 +28,5 @@ void	ft_list_addfront(t_node **list, t_node *new)
 	(*list)->prev = new;
 	new->prev = NULL;
 	new->next = (*list);
-	if ((*list)->prev != NULL)
-		(*list)->prev = new;
 	*list = new;
 }

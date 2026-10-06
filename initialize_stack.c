@@ -81,7 +81,7 @@ static int	many_parameters(char **av, t_node **stack, int *size)
 
 static int	check_argv(char **argv, int argc, t_stack *stack)
 {
-	t_node 	*s;
+	t_node 	**s;
 
 	s = stack->stack;
 	if (argc < 2)
@@ -92,22 +92,20 @@ static int	check_argv(char **argv, int argc, t_stack *stack)
 			return (1);
 		if (check_input(argv[1]) == 1)
 			return (1);
-		s = ft_create_list(argv[1], &(stack->size));
+		*s = ft_create_list(argv[1], &(stack->size));
 		return (0);
 	}
 	else if (ft_strlen(argv[1]) < 1)
 		return (1);
 	else
-		return (many_parameters(argv, &s, &(stack->size)));
+		return (many_parameters(argv, stack->stack, &(stack->size)));
 }
 
 int	initialize_stack(t_stack *stack, char **argv, int argc)
 {
 	int		i;
-	t_node 	*s;
 
-	s = stack->stack;
-	i = check_argv(argv, argc, &s);
+	i = check_argv(argv, argc, stack);
 	if (i == 1)
 	{
 		ft_putstr_fd("Error\n", 2);
@@ -115,6 +113,6 @@ int	initialize_stack(t_stack *stack, char **argv, int argc)
 	}
 	else if (i == 2)
 		return (2);
-	index_stack_init(&s, 1, 1);
+	index_stack_init(stack->stack, 1, 1);
 	return (0);
 }

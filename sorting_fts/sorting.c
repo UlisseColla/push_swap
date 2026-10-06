@@ -51,18 +51,33 @@ int	find_eff(t_node *stack, int index)
 
 void	sorting(t_stack *stack_a, t_stack *stack_b)
 {
-	t_node	*a;
-	t_node	*b;
+	t_node	**a;
+	t_node	**b;
 
 	a = stack_a->stack;
 	b = stack_b->stack;
-	while (ft_list_size(&a) > 3 && ft_check_push(a, 1, 4) == 0)
-		push_a_to_b(&a, &b, 1, 4);
-	while (ft_list_size(&a) > 3 && ft_check_push(a, 2, 3) == 0)
-		push_a_to_b(&a, &b, 2, 3);
-	ft_three_numbers(&a);
-	while (b->next)
+	while (ft_list_size(&a) > 3 && ft_check_push(*a, 1, 4) == 0)
+		push_a_to_b(stack_a, stack_b, 1, 4);
+	while (ft_list_size(&a) > 3 && ft_check_push(*a, 2, 3) == 0)
+		push_a_to_b(stack_a, stack_b, 2, 3);
+	ft_three_numbers(a);
+	while ((*b)->next)
 		push_b_to_a(&b, &a);
 	push_b_to_a(&b, &a);
-	ft_smallest_on_top(&a);
+	ft_smallest_on_top(a);
 }
+
+/* 
+void	sorting(t_stack **stack_a, t_stack **stack_b)
+{
+	while (ft_list_size(stack_a) > 3 && ft_check_push(*stack_a, 1, 4) == 0)
+		push_a_to_b(stack_a, stack_b, 1, 4);
+	while (ft_list_size(stack_a) > 3 && ft_check_push(*stack_a, 2, 3) == 0)
+		push_a_to_b(stack_a, stack_b, 2, 3);
+	ft_three_numbers(stack_a);
+	while ((*stack_b)->next)
+		push_b_to_a(stack_b, stack_a);
+	push_b_to_a(stack_b, stack_a);
+	ft_smallest_on_top(stack_a);
+}
+*/
