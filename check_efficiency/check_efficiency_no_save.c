@@ -40,12 +40,10 @@ int	moves_counter_no_save(int moves, t_node *stack_a, int index)
 	return (moves);
 }
 
-void	counter_a(t_node *stack_a, int index, t_operator *operator)
+static void	counter_a(t_node *stack_a, int s, int index, t_operator *operator)
 {
 	int	moves;
-	int	stack_size;
 
-	stack_size = ft_list_size(&stack_a);
 	if ((index > find_biggest(stack_a)
 			&& find_biggest(stack_a) == ft_list_last(stack_a)->index)
 		|| (index < find_smallest(stack_a)
@@ -56,16 +54,14 @@ void	counter_a(t_node *stack_a, int index, t_operator *operator)
 		return ;
 	}
 	moves = moves_counter_no_save(0, stack_a, index);
-	operator->rra = stack_size - moves;
+	operator->rra = s - moves;
 	operator->ra = moves;
 }
 
-void	counter_b(t_node *stack_b, int index, t_operator *operator)
+static void	counter_b(t_node *stack_b, int s, int index, t_operator *operator)
 {
 	int	moves;
-	int	stack_size;
 
-	stack_size = ft_list_size(&stack_b);
 	moves = 0;
 	if (stack_b->index == index)
 	{
@@ -78,11 +74,11 @@ void	counter_b(t_node *stack_b, int index, t_operator *operator)
 		moves++;
 		stack_b = stack_b->next;
 	}
-	operator->rrb = stack_size - moves;
+	operator->rrb = s - moves;
 	operator->rb = moves;
 }
 
-void	check_operator_rr_rrr(t_operator *operator)
+static void	check_operator_rr_rrr(t_operator *operator)
 {
 	if (operator->ra < operator->rb)
 	{
@@ -110,7 +106,7 @@ void	check_operator_rr_rrr(t_operator *operator)
 	}
 }
 
-int	eff_counter_no_save(t_node *stack_a, t_node *stack_b, int index)
+int	eff_counter_no_save(t_helper *h_a, t_helper *h_b, int index)
 {
 	int			r_moves;
 	int			rr_moves;
@@ -118,8 +114,8 @@ int	eff_counter_no_save(t_node *stack_a, t_node *stack_b, int index)
 
 	r_moves = 0;
 	rr_moves = 0;
-	counter_b(stack_b, index, &operator);
-	counter_a(stack_a, index, &operator);
+	counter_b(h_b->node, h_b->size, index, &operator);
+	counter_a(h_a->node, h_a->size, index, &operator);
 	check_operator_rr_rrr(&operator);
 	r_moves += operator.ra + operator.rb + operator.rr;
 	rr_moves += operator.rra + operator.rrb + operator.rrr;

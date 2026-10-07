@@ -50,11 +50,19 @@ static void	rr_operations_b(t_node **b, t_node **a, t_operator *operator)
 	}
 }
 
-void	push_b_to_a(t_node **stack_b, t_node **stack_a)
+void	push_b_to_a(t_stack *s_b, t_stack *s_a)
 {
 	t_operator	operator;
+	t_node		**stack_a;
+	t_node		**stack_b;
+	t_helper	h_a;
+	t_helper	h_b;
 
-	check_efficiency(*stack_b, *stack_a, &operator);
+	stack_a = s_a->stack;
+	stack_b = s_b->stack;
+	h_a = (t_helper){*stack_a, s_a->size}; // to check!!
+	h_b = (t_helper){*stack_b, s_b->size}; // to check!!
+	check_efficiency(&h_b, &h_a, &operator);
 	r_operations_b(stack_b, stack_a, &operator);
 	rr_operations_b(stack_b, stack_a, &operator);
 	pa(stack_a, stack_b, 1);

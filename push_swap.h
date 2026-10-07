@@ -51,6 +51,12 @@ typedef struct s_stack
 	int		size;
 }	t_stack;
 
+typedef struct s_size_helper
+{
+	t_node	*node;
+	int		size;
+}	t_helper;
+
 # define CHUNK_1_4 0
 # define CHUNK_2_3 1
 
@@ -103,10 +109,10 @@ void	ft_five_numbers(t_node **stack_a, t_node **stack_b);
 void	push_smallest(t_node **stack_a, t_node **stack_b);
 void	sorting(t_stack *stack_a, t_stack *stack_b);
 void	push_a_to_b(t_stack *stack_a, t_stack *stack_b, int c_1, int c_2);
-void	push_b_to_a(t_node **stack_a, t_node **stack_b);
-void	check_efficiency(t_node *b, t_node *a, t_operator *operator); /* Check double useless double pointers for t_operator */
+void	push_b_to_a(t_stack *s_b, t_stack *s_a);
+void	check_efficiency(t_helper *h_b, t_helper *h_a, t_operator *operator); /* Check double useless double pointers for t_operator */
 void	eff_counter(t_node *a, t_node *b, int index, t_operator **value);
-int		eff_counter_no_save(t_node *stack_a, t_node *stack_b, int index);
+int		eff_counter_no_save(t_helper *h_a, t_helper *h_b, int index);
 int		find_eff(t_node *stack, int index);
 int		find_value(t_node *stack, int value);
 int		find_smallest_after_index(t_node *stack, int index);

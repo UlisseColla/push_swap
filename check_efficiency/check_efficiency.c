@@ -82,26 +82,30 @@ void	eff_counter(t_node *a, t_node *b, int index, t_operator **operator)
 }
 
 /* Check double useless double pointers for t_operator */
-void	check_efficiency(t_node *b, t_node *a, t_operator *operator)
+
+/** Pass t_helper instead of single node to be able to pass the size value. 
+ * Safe to do it this way cause I only need to read the size value. 
+ * */
+void	check_efficiency(t_helper *h_b, t_helper *h_a, t_operator *operator)
 {
-	t_node	*temp_a;
-	t_node	*temp_b;
-	int		min_moves;
-	int		current_moves;
-	int		index_min_value;
+	t_helper	temp_a;
+	t_helper	temp_b;
+	int			min_moves;
+	int			current_moves;
+	int			index_min_value;
 
 	min_moves = INT_MAX;
-	temp_a = a;
-	temp_b = b;
-	while (b)
+	temp_a = (t_helper){h_a->node, h_a->size};
+	temp_b = (t_helper){h_b->node, h_b->size};
+	while (h_b->node)
 	{
-		current_moves = eff_counter_no_save(temp_a, temp_b, b->index);
+		current_moves = eff_counter_no_save(&temp_a, &temp_b, h_b->node->index);
 		if (current_moves < min_moves)
 		{
 			min_moves = current_moves;
-			index_min_value = b->index;
+			index_min_value = h_b->node->index;
 		}
-		b = b->next;
+		h_b->node = h_b->node->next;
 	}
 	eff_counter(temp_a, temp_b, index_min_value, &operator);
 }
