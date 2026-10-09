@@ -12,18 +12,21 @@
 
 #include "../push_swap.h"
 
-void	ft_smallest_on_top(t_node **stack)
+static void	ft_smallest_on_top(t_stack *s)
 {
+	t_node	**stack;
+
+	stack = s->stack;
 	while ((*stack)->index != find_smallest(*stack))
 	{
-		if (find_eff(*stack, find_smallest(*stack)) > (ft_list_size(stack) / 2))
+		if (find_eff(*stack, find_smallest(*stack)) > (s->size / 2))
 			rra(stack, 1);
 		else
 			ra(stack, 1);
 	}
 }
 
-int	ft_check_push(t_node *stack, int c_1, int c_2)
+static int	ft_check_push(t_node *stack, int c_1, int c_2)
 {
 	while (stack)
 	{
@@ -34,7 +37,7 @@ int	ft_check_push(t_node *stack, int c_1, int c_2)
 	return (1);
 }
 
-int	find_eff(t_node *stack, int index)
+static int	find_eff(t_node *stack, int index)
 {
 	int	i;
 
@@ -56,15 +59,15 @@ void	sorting(t_stack *stack_a, t_stack *stack_b)
 
 	a = stack_a->stack;
 	b = stack_b->stack;
-	while (ft_list_size(&a) > 3 && ft_check_push(*a, 1, 4) == 0)
+	while (stack_a->size > 3 && ft_check_push(*a, 1, 4) == 0)
 		push_a_to_b(stack_a, stack_b, 1, 4);
-	while (ft_list_size(&a) > 3 && ft_check_push(*a, 2, 3) == 0)
+	while (stack_a->size > 3 && ft_check_push(*a, 2, 3) == 0)
 		push_a_to_b(stack_a, stack_b, 2, 3);
 	ft_three_numbers(a);
 	while ((*b)->next)
 		push_b_to_a(&b, &a);
 	push_b_to_a(&b, &a);
-	ft_smallest_on_top(a);
+	ft_smallest_on_top(stack_a);
 }
 
 /* 

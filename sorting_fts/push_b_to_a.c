@@ -60,8 +60,8 @@ void	push_b_to_a(t_stack *s_b, t_stack *s_a)
 
 	stack_a = s_a->stack;
 	stack_b = s_b->stack;
-	h_a = (t_helper){*stack_a, s_a->size}; // to check!!
-	h_b = (t_helper){*stack_b, s_b->size}; // to check!!
+	h_a = (t_helper){(*stack_a), s_a->size};
+	h_b = (t_helper){(*stack_b), s_b->size};
 	check_efficiency(&h_b, &h_a, &operator);
 	r_operations_b(stack_b, stack_a, &operator);
 	rr_operations_b(stack_b, stack_a, &operator);

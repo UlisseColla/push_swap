@@ -32,7 +32,7 @@ int	main(int argc, char **argv)
 		else if (a.size == 5)
 			ft_five_numbers(&a, &b);
 		else
-			sorting(&a, &b, &ls);
+			sorting(&a, &b);
 	}
 	return (ft_free_list(&a.stack), 0);
 }

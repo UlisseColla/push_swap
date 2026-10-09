@@ -12,12 +12,14 @@
 
 #include "../push_swap.h"
 
-void	ra(t_node **stack, int i)
+void	ra(t_stack *s, int i)
 {
 	t_node	*value;
+	t_node	**stack;
 
-	if (ft_list_size(stack) < 2)
+	if (s->size < 2)
 		return ;
+	stack = s->stack;
 	value = *stack;
 	*stack = (*stack)->next;
 	(*stack)->prev = NULL;
@@ -27,12 +29,14 @@ void	ra(t_node **stack, int i)
 		write(1, "ra\n", 3);
 }
 
-void	rb(t_node **stack, int i)
+void	rb(t_stack *s, int i)
 {
 	t_node	*value;
+	t_node	**stack;
 
-	if (ft_list_size(stack) < 2)
+	if (s->size < 2)
 		return ;
+	stack = s->stack;
 	value = *stack;
 	*stack = (*stack)->next;
 	(*stack)->prev = NULL;
@@ -42,9 +46,9 @@ void	rb(t_node **stack, int i)
 		write(1, "rb\n", 3);
 }
 
-void	rr(t_node **stack_a, t_node **stack_b, int i)
+void	rr(t_stack *stack_a, t_stack *stack_b, int i)
 {
-	if (ft_list_size(stack_a) < 2 || ft_list_size(stack_b) < 2)
+	if (stack_a->size < 2 || stack_b->size < 2)
 		return ;
 	ra(stack_a, 0);
 	rb(stack_b, 0);

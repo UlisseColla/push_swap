@@ -12,12 +12,10 @@
 
 #include "../push_swap.h"
 
-void	ra_rra_counter_a(t_node *stack_a, int index, t_operator **operator)
+static void	ra_rra_counter_a(t_node *stack_a, int size, int index, t_operator **operator)
 {
 	int	moves;
-	int	stack_size;
 
-	stack_size = ft_list_size(&stack_a);
 	moves = 0;
 	if ((index > find_biggest(stack_a)
 			&& find_biggest(stack_a) == ft_list_last(stack_a)->index)
@@ -29,16 +27,14 @@ void	ra_rra_counter_a(t_node *stack_a, int index, t_operator **operator)
 		return ;
 	}
 	moves = moves_counter(0, stack_a, index);
-	(*operator)->rra = stack_size - moves;
+	(*operator)->rra = size - moves;
 	(*operator)->ra = moves;
 }
 
-void	rb_rrb_counter_b(t_node *stack_b, int index, t_operator **operator)
+static void	rb_rrb_counter_b(t_node *stack_b, int size, int index, t_operator **operator)
 {
 	int	moves;
-	int	stack_size;
 
-	stack_size = ft_list_size(&stack_b);
 	moves = 0;
 	if (stack_b->index == index)
 	{
@@ -51,19 +47,19 @@ void	rb_rrb_counter_b(t_node *stack_b, int index, t_operator **operator)
 		moves++;
 		stack_b = stack_b->next;
 	}
-	(*operator)->rrb = stack_size - moves;
+	(*operator)->rrb = size - moves;
 	(*operator)->rb = moves;
 }
 
-void	eff_counter(t_node *a, t_node *b, int index, t_operator **operator)
+void	eff_counter(t_helper *a, t_helper *b, int index, t_operator **operator)
 {
 	int	r_moves;
 	int	rr_moves;
 
 	r_moves = 0;
 	rr_moves = 0;
-	rb_rrb_counter_b(b, index, operator);
-	ra_rra_counter_a(a, index, operator);
+	rb_rrb_counter_b(b->node, b->size, index, operator);
+	ra_rra_counter_a(a->node, a->size, index, operator);
 	counter_rr_rrr(operator);
 	r_moves += (*operator)->ra + (*operator)->rb + (*operator)->rr;
 	rr_moves += (*operator)->rra + (*operator)->rrb + (*operator)->rrr;
@@ -107,5 +103,5 @@ void	check_efficiency(t_helper *h_b, t_helper *h_a, t_operator *operator)
 		}
 		h_b->node = h_b->node->next;
 	}
-	eff_counter(temp_a, temp_b, index_min_value, &operator);
+	eff_counter(&temp_a, &temp_b, index_min_value, &operator);
 }
