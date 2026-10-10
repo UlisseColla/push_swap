@@ -12,43 +12,43 @@
 
 #include "../push_swap.h"
 
-static void	ra_rra_counter_a(t_node *stack_a, int size, int index, t_operator **operator)
+static void	ra_rra_counter_a(t_node *stack_a, int s, int i, t_operator **op)
 {
 	int	moves;
 
 	moves = 0;
-	if ((index > find_biggest(stack_a)
+	if ((i > find_biggest(stack_a)
 			&& find_biggest(stack_a) == ft_list_last(stack_a)->index)
-		|| (index < find_smallest(stack_a)
+		|| (i < find_smallest(stack_a)
 			&& find_smallest(stack_a) == stack_a->index))
 	{
-		(*operator)->rra = 0;
-		(*operator)->ra = 0;
+		(*op)->rra = 0;
+		(*op)->ra = 0;
 		return ;
 	}
-	moves = moves_counter(0, stack_a, index);
-	(*operator)->rra = size - moves;
-	(*operator)->ra = moves;
+	moves = moves_counter(0, stack_a, i);
+	(*op)->rra = s - moves;
+	(*op)->ra = moves;
 }
 
-static void	rb_rrb_counter_b(t_node *stack_b, int size, int index, t_operator **operator)
+static void	rb_rrb_counter_b(t_node *stack_b, int s, int i, t_operator **op)
 {
 	int	moves;
 
 	moves = 0;
-	if (stack_b->index == index)
+	if (stack_b->index == i)
 	{
-		(*operator)->rrb = 0;
-		(*operator)->rb = 0;
+		(*op)->rrb = 0;
+		(*op)->rb = 0;
 		return ;
 	}
-	while (stack_b->index != index && stack_b->next)
+	while (stack_b->index != i && stack_b->next)
 	{
 		moves++;
 		stack_b = stack_b->next;
 	}
-	(*operator)->rrb = size - moves;
-	(*operator)->rb = moves;
+	(*op)->rrb = s - moves;
+	(*op)->rb = moves;
 }
 
 void	eff_counter(t_helper *a, t_helper *b, int index, t_operator **operator)

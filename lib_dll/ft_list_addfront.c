@@ -12,8 +12,6 @@
 
 #include "../push_swap.h"
 
-/* Aggiungo un elemento all'inizio della lista, passando un pointer ad essa */
-
 void	ft_list_addfront(t_node **list, t_node *new)
 {
 	if (!list || !new)

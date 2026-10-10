@@ -77,17 +77,17 @@ void	sa(t_stack *a, int i);
 void	sb(t_stack *b, int i);
 void	ss(t_stack *a, t_stack *b, int i);
 /* Rotate */
-void	ra(t_node **stack, int i);
-void	rb(t_node **stack, int i);
-void	rr(t_node **stack_a, t_node **stack_b, int i);
+void	ra(t_stack *s, int i);
+void	rb(t_stack *s, int i);
+void	rr(t_stack *stack_a, t_stack *stack_b, int i);
 /* Reverse rotate */
-void	rra(t_node **stack, int i);
-void	rrb(t_node **stack, int i);
-void	rrr(t_node **stack_a, t_node **stack_b, int i);
+void	rra(t_stack *s, int i);
+void	rrb(t_stack *s, int i);
+void	rrr(t_stack *stack_a, t_stack *stack_b, int i);
 
 /* Utils */
 void	index_stack_init(t_node **stack, int i, int c);
-void	index_push_init(t_node *stack, int *lis);
+/* void	index_push_init(t_node *stack, int *lis); */
 void	show_stack(t_node **stack);
 void	free_mat(char **mat);
 void	counter_rr_rrr(t_operator **operator);
@@ -110,7 +110,7 @@ void	push_smallest(t_node **stack_a, t_node **stack_b);
 void	sorting(t_stack *stack_a, t_stack *stack_b);
 void	push_a_to_b(t_stack *stack_a, t_stack *stack_b, int c_1, int c_2);
 void	push_b_to_a(t_stack *s_b, t_stack *s_a);
-void	check_efficiency(t_helper *h_b, t_helper *h_a, t_operator *operator); /* Check double useless double pointers for t_operator */
+void	check_efficiency(t_helper *h_b, t_helper *h_a, t_operator *operator);
 void	eff_counter(t_node *a, t_node *b, int index, t_operator **value);
 int		eff_counter_no_save(t_helper *h_a, t_helper *h_b, int index);
 int		find_eff(t_node *stack, int index);
