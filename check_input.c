@@ -6,7 +6,7 @@
 /*   By: ucolla <ucolla@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 17:59:54 by ucolla            #+#    #+#             */
-/*   Updated: 2024/02/10 16:27:19 by ucolla           ###   ########.fr       */
+/*   Updated: 2026/10/10 18:51:00 by ucolla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,19 @@ void	free_mat(char **mat)
 	free(mat);
 }
 
-int	is_dup(char **mat, int a, int y)
-{
-	int	n1;
-	int	n2;
-
-	n1 = ft_atoi(mat[a]);
-	n2 = ft_atoi(mat[y]);
-	return (n1 - n2);
-}
-
 int	check_dup(char **mat, int y)
 {
 	int	a;
+	int	n1;
+	int	n2;
 
 	a = y;
+	n1 = ft_atoi(mat[a]);
 	y++;
 	while (mat[y])
 	{
-		if (is_dup(mat, a, y) == 0)
+		n2 = ft_atoi(mat[y]);
+		if (n1 - n2 == 0)
 			return (1);
 		y++;
 	}
@@ -65,10 +59,17 @@ int	check_sign_and_chars(char **mat, int i, int j)
 	return (0);
 }
 
+void	check_input_helper(char ***mat)
+{
+	free_mat(*mat);
+	*mat = NULL;
+}
+
 int	check_input(char *str)
 {
 	char	**mat;
 	int		i;
+	long	n;
 
 	i = 0;
 	if (check_white_space(str) == 1)
@@ -76,17 +77,17 @@ int	check_input(char *str)
 	mat = ft_split(str, ' ');
 	while (mat[i])
 	{
-		if (check_sign_and_chars(mat, i, 0) == 1
-			|| ft_atol(mat[i]) > 2147483647 || ft_atol(mat[i]) < -2147483648
-			|| check_dup(mat, i) == 1)
-		{
-			free_mat(mat);
-			mat = NULL;
-			return (1);
-		}
+		n = ft_atol(mat[i]);
+		if (check_sign_and_chars(mat, i, 0) == 1 || n > INT_MAX || n < INT_MIN)
+			return (check_input_helper(&mat), 1);
 		i++;
 	}
-	free_mat(mat);
-	mat = NULL;
-	return (0);
+	i = 0;
+	while (mat[i])
+	{
+		if (check_dup(mat, i) == 1)
+			return (check_input_helper(&mat), 1);
+		i++;
+	}
+	return (check_input_helper(&mat), 0);
 }

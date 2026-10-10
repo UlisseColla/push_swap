@@ -6,7 +6,7 @@
 /*   By: ucolla <ucolla@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 19:15:40 by aconciar          #+#    #+#             */
-/*   Updated: 2024/02/04 17:38:50 by ucolla           ###   ########.fr       */
+/*   Updated: 2026/10/10 18:16:12 by ucolla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,3 @@ void	push_b_to_a(t_stack *s_b, t_stack *s_a)
 	if ((*stack_a)->index == find_biggest(*stack_a))
 		ra(s_a, 1);
 }
-
-/* 
-void	push_b_to_a(t_stack **stack_b, t_stack **stack_a)
-{
-	t_operator	operator;
-
-	check_efficiency(*stack_b, *stack_a, &operator);
-	r_operations_b(stack_b, stack_a, operator);
-	rr_operations_b(stack_b, stack_a, operator);
-	pa(stack_a, stack_b, 1);
-	if ((*stack_a)->index == find_biggest(*stack_a))
-		ra(stack_a, 1);
-}
-*/

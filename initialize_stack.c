@@ -81,7 +81,7 @@ static int	many_parameters(char **av, t_node **stack, int *size)
 
 static int	check_argv(char **argv, int argc, t_stack *stack)
 {
-	t_node 	**s;
+	t_node	**s;
 
 	s = stack->stack;
 	if (argc < 2)

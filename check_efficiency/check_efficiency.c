@@ -6,40 +6,44 @@
 /*   By: ucolla <ucolla@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 18:02:09 by aconciar          #+#    #+#             */
-/*   Updated: 2024/02/04 15:56:49 by ucolla           ###   ########.fr       */
+/*   Updated: 2026/10/10 18:16:38 by ucolla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static void	ra_rra_counter_a(t_node *stack_a, int s, int i, t_operator **op)
+static void	ra_rra_counter_a(t_node *stack_a, int s, int i, t_operator *op)
 {
 	int	moves;
+	int	biggest;
+	int	smallest;
 
 	moves = 0;
-	if ((i > find_biggest(stack_a)
-			&& find_biggest(stack_a) == ft_list_last(stack_a)->index)
-		|| (i < find_smallest(stack_a)
-			&& find_smallest(stack_a) == stack_a->index))
+	biggest = find_biggest(stack_a);
+	smallest = find_smallest(stack_a);
+	if ((i > biggest
+			&& biggest == ft_list_last(stack_a)->index)
+		|| (i < smallest
+			&& smallest == stack_a->index))
 	{
-		(*op)->rra = 0;
-		(*op)->ra = 0;
+		op->rra = 0;
+		op->ra = 0;
 		return ;
 	}
 	moves = moves_counter(0, stack_a, i);
-	(*op)->rra = s - moves;
-	(*op)->ra = moves;
+	op->rra = s - moves;
+	op->ra = moves;
 }
 
-static void	rb_rrb_counter_b(t_node *stack_b, int s, int i, t_operator **op)
+static void	rb_rrb_counter_b(t_node *stack_b, int s, int i, t_operator *op)
 {
 	int	moves;
 
 	moves = 0;
 	if (stack_b->index == i)
 	{
-		(*op)->rrb = 0;
-		(*op)->rb = 0;
+		op->rrb = 0;
+		op->rb = 0;
 		return ;
 	}
 	while (stack_b->index != i && stack_b->next)
@@ -47,11 +51,11 @@ static void	rb_rrb_counter_b(t_node *stack_b, int s, int i, t_operator **op)
 		moves++;
 		stack_b = stack_b->next;
 	}
-	(*op)->rrb = s - moves;
-	(*op)->rb = moves;
+	op->rrb = s - moves;
+	op->rb = moves;
 }
 
-void	eff_counter(t_helper *a, t_helper *b, int index, t_operator **operator)
+void	eff_counter(t_helper *a, t_helper *b, int index, t_operator *operator)
 {
 	int	r_moves;
 	int	rr_moves;
@@ -61,27 +65,22 @@ void	eff_counter(t_helper *a, t_helper *b, int index, t_operator **operator)
 	rb_rrb_counter_b(b->node, b->size, index, operator);
 	ra_rra_counter_a(a->node, a->size, index, operator);
 	counter_rr_rrr(operator);
-	r_moves += (*operator)->ra + (*operator)->rb + (*operator)->rr;
-	rr_moves += (*operator)->rra + (*operator)->rrb + (*operator)->rrr;
+	r_moves += operator->ra + operator->rb + operator->rr;
+	rr_moves += operator->rra + operator->rrb + operator->rrr;
 	if (r_moves < rr_moves)
 	{
-		(*operator)->rra = 0;
-		(*operator)->rrb = 0;
-		(*operator)->rrr = 0;
+		operator->rra = 0;
+		operator->rrb = 0;
+		operator->rrr = 0;
 	}
 	else
 	{
-		(*operator)->ra = 0;
-		(*operator)->rb = 0;
-		(*operator)->rr = 0;
+		operator->ra = 0;
+		operator->rb = 0;
+		operator->rr = 0;
 	}
 }
 
-/* Check double useless double pointers for t_operator */
-
-/** Pass t_helper instead of single node to be able to pass the size value. 
- * Safe to do it this way cause I only need to read the size value. 
- * */
 void	check_efficiency(t_helper *h_b, t_helper *h_a, t_operator *operator)
 {
 	t_helper	temp_a;
@@ -103,5 +102,5 @@ void	check_efficiency(t_helper *h_b, t_helper *h_a, t_operator *operator)
 		}
 		h_b->node = h_b->node->next;
 	}
-	eff_counter(&temp_a, &temp_b, index_min_value, &operator);
+	eff_counter(&temp_a, &temp_b, index_min_value, operator);
 }

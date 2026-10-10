@@ -6,63 +6,71 @@
 /*   By: ucolla <ucolla@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 15:29:28 by ucolla            #+#    #+#             */
-/*   Updated: 2024/02/04 15:30:53 by ucolla           ###   ########.fr       */
+/*   Updated: 2026/10/10 18:07:49 by ucolla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	counter_rr_rrr(t_operator **operator)
+void	counter_rr_rrr(t_operator *operator)
 {
-	if ((*operator)->ra < (*operator)->rb)
+	if (operator->ra < operator->rb)
 	{
-		(*operator)->rr = (*operator)->ra;
-		(*operator)->rb -= (*operator)->ra;
-		(*operator)->ra = 0;
+		operator->rr = operator->ra;
+		operator->rb -= operator->ra;
+		operator->ra = 0;
 	}
 	else
 	{
-		(*operator)->rr = (*operator)->rb;
-		(*operator)->ra -= (*operator)->rb;
-		(*operator)->rb = 0;
+		operator->rr = operator->rb;
+		operator->ra -= operator->rb;
+		operator->rb = 0;
 	}
-	if ((*operator)->rra < (*operator)->rrb)
+	if (operator->rra < operator->rrb)
 	{
-		(*operator)->rrr = (*operator)->rra;
-		(*operator)->rrb -= (*operator)->rra;
-		(*operator)->rra = 0;
+		operator->rrr = operator->rra;
+		operator->rrb -= operator->rra;
+		operator->rra = 0;
 	}
 	else
 	{
-		(*operator)->rrr = (*operator)->rrb;
-		(*operator)->rra -= (*operator)->rrb;
-		(*operator)->rrb = 0;
+		operator->rrr = operator->rrb;
+		operator->rra -= operator->rrb;
+		operator->rrb = 0;
 	}
 }
 
-int	moves_counter(int moves, t_node *stack_a, int index)
+static void	moves_counter_helper(int *ids, t_node *a, int index)
 {
-	if (index > find_biggest(stack_a))
+	ids[0] = find_smallest_after_index(a, index);
+	ids[1] = find_biggest(a);
+	ids[2] = find_biggest_before_index(a, index);
+}
+
+int	moves_counter(int moves, t_node *a, int index)
+{
+	int	ids[3];
+
+	moves_counter_helper(ids, a, index);
+	if (index > ids[1])
 	{
-		while (stack_a->next
-			&& stack_a->index != find_biggest_before_index(stack_a, index))
+		while (a->next && a->index != ids[2])
 		{
 			moves++;
-			stack_a = stack_a->next;
+			a = a->next;
 		}
-		if (stack_a->index == find_biggest_before_index(stack_a, index))
+		if (a->index == ids[2])
 		{
 			moves++;
-			stack_a = stack_a->next;
+			a = a->next;
 		}
 	}
 	else
 	{
-		while (stack_a->next
-			&& stack_a->index != find_smallest_after_index(stack_a, index))
+		while (a->next && a->index != ids[0])
 		{
 			moves++;
-			stack_a = stack_a->next;
+			a = a->next;
 		}
 	}
 	return (moves);

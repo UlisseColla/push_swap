@@ -21,6 +21,8 @@ RESET = "\e[0m"
 FILES_LIST = check_efficiency/check_efficiency_no_save \
 				check_efficiency/check_efficiency \
 				check_efficiency/check_efficiency_utils \
+				check_efficiency/moves_counter_no_save \
+				operations/op_rev_rotate \
 				lib_dll/ft_create_list \
 				lib_dll/ft_create_node \
 				lib_dll/ft_free_list \
@@ -29,7 +31,6 @@ FILES_LIST = check_efficiency/check_efficiency_no_save \
 				lib_dll/ft_list_addback \
 				lib_dll/ft_list_addfront \
 				lib_dll/ft_list_find_node \
-				operations/op_rev_rotate \
 				operations/op_rotate \
 				operations/op_swap_and_push \
 				sorting_fts/ft_two_and_four_numbers \

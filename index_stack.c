@@ -36,6 +36,7 @@ void	index_stack_init(t_node **stack, int i, int c)
 	int		list_size;
 	int		smallest;
 	t_node	*b;
+	t_node	*target;
 
 	tmp = 1;
 	list_size = ft_list_size(stack);
@@ -43,9 +44,10 @@ void	index_stack_init(t_node **stack, int i, int c)
 	while (i <= list_size)
 	{
 		smallest = index_find_smallest(&b);
-		ft_list_find_node(b, smallest)->index = i;
-		ft_list_find_node(b, smallest)->has_index = true;
-		ft_list_find_node(b, smallest)->chunk = c;
+		target = ft_list_find_node(b, smallest); 
+		target->index = i;
+		target->has_index = true;
+		target->chunk = c;
 		if (tmp == list_size / 4)
 		{
 			c++;

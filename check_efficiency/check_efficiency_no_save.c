@@ -6,48 +6,24 @@
 /*   By: ucolla <ucolla@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 19:26:07 by aconciar          #+#    #+#             */
-/*   Updated: 2024/02/04 15:54:37 by ucolla           ###   ########.fr       */
+/*   Updated: 2026/10/10 18:02:58 by ucolla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	moves_counter_no_save(int moves, t_node *stack_a, int index)
-{
-	if (index > find_biggest(stack_a))
-	{
-		while (stack_a->next && stack_a->index
-			!= find_biggest_before_index(stack_a, index))
-		{
-			moves++;
-			stack_a = stack_a->next;
-		}
-		if (stack_a->index == find_biggest_before_index(stack_a, index))
-		{
-			moves++;
-			stack_a = stack_a->next;
-		}
-	}
-	else
-	{
-		while (stack_a->next && stack_a->index
-			!= find_smallest_after_index(stack_a, index))
-		{
-			moves++;
-			stack_a = stack_a->next;
-		}
-	}
-	return (moves);
-}
-
 static void	counter_a(t_node *stack_a, int s, int index, t_operator *operator)
 {
 	int	moves;
+	int	biggest;
+	int	smallest;
 
-	if ((index > find_biggest(stack_a)
-			&& find_biggest(stack_a) == ft_list_last(stack_a)->index)
-		|| (index < find_smallest(stack_a)
-			&& find_smallest(stack_a) == stack_a->index))
+	biggest = find_biggest(stack_a);
+	smallest = find_smallest(stack_a);
+	if ((index > biggest
+			&& biggest == ft_list_last(stack_a)->index)
+		|| (index < smallest
+			&& smallest == stack_a->index))
 	{
 		operator->rra = 0;
 		operator->ra = 0;

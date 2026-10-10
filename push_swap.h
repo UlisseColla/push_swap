@@ -6,7 +6,7 @@
 /*   By: ucolla <ucolla@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:37:03 by ucolla            #+#    #+#             */
-/*   Updated: 2024/02/06 19:36:24 by ucolla           ###   ########.fr       */
+/*   Updated: 2026/10/10 18:11:24 by ucolla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdio.h>
 # include <limits.h>
 # include <stdbool.h>
+# include <sys/time.h>
 
 typedef struct s_node
 {
@@ -87,10 +88,9 @@ void	rrr(t_stack *stack_a, t_stack *stack_b, int i);
 
 /* Utils */
 void	index_stack_init(t_node **stack, int i, int c);
-/* void	index_push_init(t_node *stack, int *lis); */
 void	show_stack(t_node **stack);
 void	free_mat(char **mat);
-void	counter_rr_rrr(t_operator **operator);
+void	counter_rr_rrr(t_operator *operator);
 int		moves_counter(int moves, t_node *stack_a, int index);
 int		find_smallest(t_node *stack);
 int		find_biggest(t_node *stack);
@@ -111,9 +111,9 @@ void	sorting(t_stack *stack_a, t_stack *stack_b);
 void	push_a_to_b(t_stack *stack_a, t_stack *stack_b, int c_1, int c_2);
 void	push_b_to_a(t_stack *s_b, t_stack *s_a);
 void	check_efficiency(t_helper *h_b, t_helper *h_a, t_operator *operator);
-void	eff_counter(t_helper *a, t_helper *b, int index, t_operator **operator);
+int		moves_counter_no_save(int moves, t_node *a, int index);
+void	eff_counter(t_helper *a, t_helper *b, int index, t_operator *operator);
 int		eff_counter_no_save(t_helper *h_a, t_helper *h_b, int index);
-/* int		find_eff(t_node *stack, int index); */
 int		find_value(t_node *stack, int value);
 int		find_smallest_after_index(t_node *stack, int index);
 int		find_biggest_before_index(t_node *stack, int index);
