@@ -31,17 +31,15 @@ void	push_a_to_b(t_stack *stack_a, t_stack *stack_b, int c_1, int c_2)
 {
 	int		i;
 	t_node	*a;
-	t_node	*b;
 
-	a = stack_a->stack;
-	b = stack_b->stack;
+	a = *(stack_a->stack);
 	i = find_push(a, c_1, c_2);
 	while (i > 0)
 	{
 		if (i > stack_a->size / 2)
-			rra(&a, 1);
+			rra(stack_a, 1);
 		else
-			ra(&a, 1);
+			ra(stack_a, 1);
 		i--;
 	}
 	if (a->chunk == c_2)

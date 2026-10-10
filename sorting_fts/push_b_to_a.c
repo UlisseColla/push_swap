@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-static void	r_operations_b(t_node **b, t_node **a, t_operator *operator)
+static void	r_operations_b(t_stack *b, t_stack *a, t_operator *operator)
 {
 	while (operator->rr > 0)
 	{
@@ -31,7 +31,7 @@ static void	r_operations_b(t_node **b, t_node **a, t_operator *operator)
 	}
 }
 
-static void	rr_operations_b(t_node **b, t_node **a, t_operator *operator)
+static void	rr_operations_b(t_stack *b, t_stack *a, t_operator *operator)
 {
 	while (operator->rrr > 0)
 	{
@@ -63,11 +63,11 @@ void	push_b_to_a(t_stack *s_b, t_stack *s_a)
 	h_a = (t_helper){(*stack_a), s_a->size};
 	h_b = (t_helper){(*stack_b), s_b->size};
 	check_efficiency(&h_b, &h_a, &operator);
-	r_operations_b(stack_b, stack_a, &operator);
-	rr_operations_b(stack_b, stack_a, &operator);
-	pa(stack_a, stack_b, 1);
+	r_operations_b(s_b, s_a, &operator);
+	rr_operations_b(s_b, s_a, &operator);
+	pa(s_a, s_b, 1);
 	if ((*stack_a)->index == find_biggest(*stack_a))
-		ra(stack_a, 1);
+		ra(s_a, 1);
 }
 
 /* 

@@ -102,18 +102,18 @@ int		initialize_stack(t_stack *stack, char **argv, int argc);
 int		check_white_space(char *str);
 
 /* --- Sorting --- */
-void	ft_two_numbers(t_node **stack_a);
-void	ft_three_numbers(t_node **stack_a);
-void	ft_four_numbers(t_node **stack_a, t_node **stack_b);
-void	ft_five_numbers(t_node **stack_a, t_node **stack_b);
-void	push_smallest(t_node **stack_a, t_node **stack_b);
+void	ft_two_numbers(t_stack *a);
+void	ft_three_numbers(t_stack *a);
+void	ft_four_numbers(t_stack *a, t_stack *b);
+void	ft_five_numbers(t_stack *stack_a, t_stack *stack_b);
+void	push_smallest(t_stack *stack_a, t_stack *stack_b);
 void	sorting(t_stack *stack_a, t_stack *stack_b);
 void	push_a_to_b(t_stack *stack_a, t_stack *stack_b, int c_1, int c_2);
 void	push_b_to_a(t_stack *s_b, t_stack *s_a);
 void	check_efficiency(t_helper *h_b, t_helper *h_a, t_operator *operator);
-void	eff_counter(t_node *a, t_node *b, int index, t_operator **value);
+void	eff_counter(t_helper *a, t_helper *b, int index, t_operator **operator);
 int		eff_counter_no_save(t_helper *h_a, t_helper *h_b, int index);
-int		find_eff(t_node *stack, int index);
+/* int		find_eff(t_node *stack, int index); */
 int		find_value(t_node *stack, int value);
 int		find_smallest_after_index(t_node *stack, int index);
 int		find_biggest_before_index(t_node *stack, int index);

@@ -1,4 +1,4 @@
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -g
 CC = cc
 
 NAME = push_swap

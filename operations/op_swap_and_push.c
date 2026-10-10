@@ -46,15 +46,10 @@ void	sb(t_stack *b, int i)
 
 void	ss(t_stack *a, t_stack *b, int i)
 {
-	t_node	**stack_a;
-	t_node	**stack_b;
-
-	stack_a = a->stack;
-	stack_b = b->stack;
 	if (a->size < 2 || b->size < 2)
 		return ;
-	sa(stack_a, 0);
-	sb(stack_b, 0);
+	sa(a, 0);
+	sb(b, 0);
 	if (i == 1)
 		write(1, "ss\n", 3);
 }
