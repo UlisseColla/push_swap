@@ -76,7 +76,6 @@ all:
 	@{ \
 	    $(MAKE) --no-print-directory build > build.log 2>&1 & \
 	    PID=$$!; \
-	    chars="/-\\|"; \
 	    while kill -0 $$PID 2>/dev/null; do \
 	        echo $(YELLOW) "Compiling..." $(RESET); \
 			sleep 0.8; \
@@ -114,12 +113,46 @@ bonus: $(BONUS_NAME)
 	@$(CC) $(FLAGS) $(BONUS) $(PATH_LIBFT)/$(LIBFT) $(PATH_GNL)/$(GNL) -o $(BONUS_NAME)
 
 clean:
+	@{ \
+		$(MAKE) --no-print-directory _clean > _clean.log 2>&1 & \
+		PID=$$!; \
+		wait $$PID; \
+	    STATUS=$$?; \
+	    if [ $$STATUS -eq 0 ]; then \
+	        echo $(BRIGHT_GREEN) "Push Swap clean successful!" $(RESET); \
+	        rm -f _clean.log; \
+	    else \
+	        echo $(RED) "Cleaning failed!" $(RESET); \
+	        cat _clean.log; \
+	        rm -f _clean.log; \
+	        exit 1; \
+	    fi \
+	}
+
+_clean:
 	@$(MAKE) clean -C $(PATH_LIBFT)
 	@$(MAKE) clean -C $(PATH_GNL)
 	@$(MAKE) clean -C $(PATH_PRINTF)
 	@rm -f $(FUNCTIONS_OBJ) $(BONUS_OBJ)
 
-fclean: clean
+fclean:
+	@{ \
+		$(MAKE) --no-print-directory _fclean > _fclean.log 2>&1 & \
+		PID=$$!; \
+		wait $$PID; \
+	    STATUS=$$?; \
+	    if [ $$STATUS -eq 0 ]; then \
+	        echo $(BRIGHT_GREEN) "Push Swap full clean successful!" $(RESET); \
+	        rm -f _fclean.log; \
+	    else \
+	        echo $(RED) "Full cleaning failed!" $(RESET); \
+	        cat _fclean.log; \
+	        rm -f _fclean.log; \
+	        exit 1; \
+	    fi \
+	}
+
+_fclean: clean
 	@$(MAKE) fclean -C $(PATH_LIBFT)
 	@$(MAKE) fclean -C $(PATH_GNL)
 	@$(MAKE) fclean -C $(PATH_PRINTF)
