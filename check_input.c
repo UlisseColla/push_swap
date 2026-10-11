@@ -6,7 +6,7 @@
 /*   By: ucolla <ucolla@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 17:59:54 by ucolla            #+#    #+#             */
-/*   Updated: 2026/10/10 18:51:00 by ucolla           ###   ########.fr       */
+/*   Updated: 2026/10/11 15:42:33 by ucolla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	free_mat(char **mat)
 	free(mat);
 }
 
-int	check_dup(char **mat, int y)
+static int	check_dup(char **mat, int y)
 {
 	int	a;
 	int	n1;
@@ -44,7 +44,7 @@ int	check_dup(char **mat, int y)
 	return (0);
 }
 
-int	check_sign_and_chars(char **mat, int i, int j)
+static int	check_sign_and_chars(char **mat, int i, int j)
 {
 	if (mat[i][j] == '-' && ft_strlen(mat[i]) == 1)
 		return (1);
@@ -59,7 +59,7 @@ int	check_sign_and_chars(char **mat, int i, int j)
 	return (0);
 }
 
-void	check_input_helper(char ***mat)
+static void	check_input_helper(char ***mat)
 {
 	free_mat(*mat);
 	*mat = NULL;

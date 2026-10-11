@@ -6,7 +6,7 @@
 /*   By: ucolla <ucolla@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 16:44:10 by aconciar          #+#    #+#             */
-/*   Updated: 2024/02/04 17:35:45 by ucolla           ###   ########.fr       */
+/*   Updated: 2026/10/11 14:18:34 by ucolla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,28 @@
 
 void	ft_three_numbers(t_stack *a)
 {
-	t_node	**stack_a;
-
-	stack_a = a->stack;
-	if ((*stack_a)->index > (*stack_a)->next->index && (*stack_a)->index
-		< ft_list_last(*stack_a)->index)
+	if ((*a->stack)->index > (*a->stack)->next->index && (*a->stack)->index
+		< ft_list_last(*a->stack)->index)
 		sa(a, 1);
-	else if ((*stack_a)->index > (*stack_a)->next->index
-		&& (*stack_a)->next->index > ft_list_last(*stack_a)->index)
+	else if ((*a->stack)->index > (*a->stack)->next->index
+		&& (*a->stack)->next->index > ft_list_last(*a->stack)->index)
 	{
 		sa(a, 1);
 		rra(a, 1);
 	}
-	else if ((*stack_a)->index > (*stack_a)->next->index
-		&& (*stack_a)->next->index < ft_list_last(*stack_a)->index)
+	else if ((*a->stack)->index > (*a->stack)->next->index
+		&& (*a->stack)->next->index < ft_list_last(*a->stack)->index)
 		ra(a, 1);
-	else if ((*stack_a)->next->index > (*stack_a)->index
-		&& (*stack_a)->next->index < ft_list_last(*stack_a)->index)
+	else if ((*a->stack)->next->index > (*a->stack)->index
+		&& (*a->stack)->next->index < ft_list_last(*a->stack)->index)
 		return ;
-	else if ((*stack_a)->index < (*stack_a)->next->index
-		&& (*stack_a)->index < ft_list_last(*stack_a)->index)
+	else if ((*a->stack)->index < (*a->stack)->next->index
+		&& (*a->stack)->index < ft_list_last(*a->stack)->index)
 	{
 		sa(a, 1);
 		ra(a, 1);
 	}
-	else if ((*stack_a)->index < (*stack_a)->next->index
-		&& (*stack_a)->index > ft_list_last(*stack_a)->index)
+	else if ((*a->stack)->index < (*a->stack)->next->index
+		&& (*a->stack)->index > ft_list_last(*a->stack)->index)
 		rra(a, 1);
 }

@@ -6,13 +6,13 @@
 /*   By: ucolla <ucolla@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:26:15 by ucolla            #+#    #+#             */
-/*   Updated: 2024/02/05 11:00:00 by ucolla           ###   ########.fr       */
+/*   Updated: 2026/10/11 15:46:12 by ucolla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	index_find_smallest(t_node **stack)
+static int	index_find_smallest(t_node **stack)
 {
 	int		min_value;
 	int		current_value;
@@ -44,7 +44,7 @@ void	index_stack_init(t_node **stack, int i, int c)
 	while (i <= list_size)
 	{
 		smallest = index_find_smallest(&b);
-		target = ft_list_find_node(b, smallest); 
+		target = ft_list_find_node(b, smallest);
 		target->index = i;
 		target->has_index = true;
 		target->chunk = c;

@@ -6,13 +6,13 @@
 /*   By: ucolla <ucolla@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 19:13:37 by aconciar          #+#    #+#             */
-/*   Updated: 2024/02/04 17:39:03 by ucolla           ###   ########.fr       */
+/*   Updated: 2026/10/11 15:45:33 by ucolla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	find_push(t_node *stack, int chunk_1, int chunk_2)
+static int	find_push(t_node *stack, int chunk_1, int chunk_2)
 {
 	int	i;
 

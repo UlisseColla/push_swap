@@ -14,8 +14,8 @@ PATH_PRINTF = ft_printf
 FT_PRINTF = libftprintf.a
 
 YELLOW = "\e[93m"
-BRIGHT_GREEN = "\e[1;92m" 	#bold
-RED = "\e[1;31m" 			#bold
+BRIGHT_GREEN = "\e[1;92m"
+RED = "\e[1;31m"
 RESET = "\e[0m"
 
 FILES_LIST = check_efficiency/check_efficiency_no_save \
@@ -69,7 +69,7 @@ BONUS_FILES = bonus_checker/checker \
 			
 BONUS = $(patsubst %, %.c, $(BONUS_FILES))
 
-BONUS_OBJ = $(BONUS_FILE:.c=.o)
+BONUS_OBJ = $(BONUS_FILES:.c=.o)
 
 all:
 	@echo $(YELLOW) "Compiling..." $(RESET)
@@ -111,7 +111,7 @@ bonus: $(BONUS_NAME)
 	@$(MAKE) -C $(PATH_LIBFT)
 	@$(MAKE) -C $(PATH_GNL)
 	@$(MAKE) -C $(PATH_PRINTF)
-	@$(CC) $(FLAGS) -g $(BONUS) $(PATH_LIBFT)/$(LIBFT) $(PATH_GNL)/$(GNL) ./bonus_checker/push_swap_bonus.h -o $(BONUS_NAME)
+	@$(CC) $(FLAGS) $(BONUS) $(PATH_LIBFT)/$(LIBFT) $(PATH_GNL)/$(GNL) -o $(BONUS_NAME)
 
 clean:
 	@$(MAKE) clean -C $(PATH_LIBFT)
