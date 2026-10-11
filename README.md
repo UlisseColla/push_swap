@@ -65,6 +65,12 @@ You can also pass arguments as a quoted string:
 ./push_swap "2 1 3 6 5 8"
 ```
 
+In case of passing a duplicate number, anything that isn't integer or more than INT_MAX or less than INT_MIN, the program outputs:
+
+```bash
+Error
+```
+
 ### Testing with the Checker
 
 Verify the output of `push_swap` with the `checker` program:
@@ -76,6 +82,10 @@ ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker $ARG
 If correctly sorted, the checker outputs:
 ```text
 OK
+```
+If not, or in case of bad input:
+```bash
+Error
 ```
 
 ---
